@@ -37,24 +37,27 @@ cd proyecto-api-karate
 El archivo build.gradle contiene la configuración de las dependencias y tareas necesarias para ejecutar las pruebas.
 
 Para descargar todas las dependencias y compilar el proyecto, ejecuta el siguiente comando desde la raíz del proyecto:
-```
+
 bash
+```
 ./gradlew build
 ```
 Este comando descargará todas las dependencias, verificará la integridad del proyecto y generará los artefactos necesarios.
 
 ### 3. Ejecutar las pruebas con Gradle:
 Una vez que el proyecto esté compilado y listo, puedes ejecutar todas las pruebas automatizadas con el siguiente comando:
-```
+
 bash
+```
 ./gradlew clean test
 ```
 El comando clean elimina los archivos generados previamente y el comando test ejecuta todas las pruebas de Karate integradas con Cucumber.
 
 ### 4. Ver los reportes de pruebas:
 Después de ejecutar las pruebas, puedes visualizar los reportes detallados generados por Karate en la siguiente ruta:
-```
+
 bash
+```
 target/cucumber-html-reports/index.html
 ```
 
