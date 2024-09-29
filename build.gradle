@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id 'idea'
+}
+
+group = "org.karate"
+version = "1.0-SNAPSHOT"
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Dependencias de Cucumber
+    testImplementation 'io.cucumber:cucumber-java:7.14.0'
+    testImplementation 'io.cucumber:cucumber-junit:7.14.0'
+
+    // Karate framework para pruebas REST
+    testImplementation 'com.intuit.karate:karate-junit5:1.4.0'
+
+    // JUnit para ejecutar las pruebas
+    testImplementation 'junit:junit:4.13.2'
+
+    // Otros posibles complementos
+    testImplementation 'org.apache.commons:commons-lang3:3.12.0'
+}
+
+test {
+    useJUnitPlatform()
+
+    // Configuración para mostrar los resultados de las pruebas en consola
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+task cucumberTest(type: Test) {
+    useJUnit()
+    systemProperty 'cucumber.options', '--tags @smoke'
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
