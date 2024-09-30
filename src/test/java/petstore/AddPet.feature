@@ -4,30 +4,10 @@ Feature: Añadir una nueva mascota
     * url 'https://petstore.swagger.io'
 
   Scenario:  Añadir una nueva mascota
-    # Agregar una mascota al inventario
-    * def add_a_pet_request =
-      """
-      {
-        "id": 0,
-        "category": {
-          "id": 0,
-          "name": "string"
-        },
-        "name": "doggie",
-        "photoUrls": [
-          "string"
-        ],
-        "tags": [
-          {
-            "id": 0,
-            "name": "string"
-          }
-        ],
-        "status": "available"
-      }
-      """
+    * def addPetRequest = karate.read('classpath:AddPetRequest.json')
+
     Given path '/v2/pet'
-    And request add_a_pet_request
+    And request addPetRequest
     When method POST
     Then status 200
 

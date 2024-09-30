@@ -4,36 +4,22 @@ Feature: Actualizar el estado de una mascota a 'sold'
     * url 'https://petstore.swagger.io'
 
   Scenario: Actualizar el estado de una mascota a 'sold'
-    * def update_request =
-      """
-          {
-        "id": 0,
-        "category": {
-        "id": 0,
-        "name": "string"
-        },
-        "name": "doggie",
-        "photoUrls": [
-        "string"
-        ],
-        "tags": [
-        {
-        "id": 0,
-        "name": "string"
-        }
-        ],
-        "status": "sold"
-        }
-    """
+    * def result = call read('AddPet.feature')
+    * def petId = result.petId
+    * def updatePetRequest = karate.read('classpath:AddPetRequest.json')
+
+    * updatePetRequest.name = 'newDoggie'
+    * updatePetRequest.status = 'sold'
+    * updatePetRequest.id = petId
+
     Given path '/v2/pet'
-    And request update_request
+    And request updatePetRequest
     When method PUT
     Then status 200
+    * print 'Mascota actualizada:', response
 
     * def petName = response.name
     * def petStatus = response.status
-    * print 'Pet Name:', petName
-    * print 'Pet Status:', petStatus
 
     * def resultName = { petName: petName }
     * def resultStatus = { petStatus: petStatus }

@@ -17,6 +17,5 @@ Feature: Buscar mascotas por estatus 'sold'
     And match $..id contains petId
     And match $..name contains petName
     And match $..status contains petStatus
-    * print 'Pet Id:', petId
-    * print 'Pet Name:', petName
-    * print 'Pet Status:', petStatus
+    * def filteredResponse = karate.filter(response, function(x){ return x.id == petId })
+    * print 'Mascotas con estatus "sold" y id:'+ petId + ':', filteredResponse
